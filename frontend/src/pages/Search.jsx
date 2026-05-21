@@ -1,37 +1,38 @@
-import { useState, useEffect } from 'react'
-import { useSearchParams } from 'react-router-dom'
-import axios from 'axios'
-import MovieCard from '../components/MovieCard.jsx'
+import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { fetchFromTMDB } from '../api/tmdb';
+import MovieCard from '../components/MovieCard.jsx';
 
 function Search() {
-  const [searchParams] = useSearchParams()
-  const query = searchParams.get('q') || ''
-  const [movies, setMovies] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [page, setPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(0)
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get('q') || '';
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
     if (query) {
-      searchMovies(1)
+      searchMovies(1);
     }
-  }, [query])
+  }, [query]);
 
   const searchMovies = async (pageNum) => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const res = await axios.get('/api/tmdb/search', {
-        params: { query, page: pageNum }
-      })
-      setMovies(res.data.results)
-      setTotalPages(res.data.total_pages)
-      setPage(pageNum)
+      const data = await fetchFromTMDB('/search/movie', {
+        query,
+        page: pageNum
+      });
+      setMovies(data.results);
+      setTotalPages(data.total_pages);
+      setPage(pageNum);
     } catch (err) {
-      console.error('Error searching movies:', err)
+      console.error('Error searching movies:', err);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   if (loading) {
     return (
@@ -41,7 +42,7 @@ function Search() {
           <p className="text-slate-400">Searching...</p>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -89,7 +90,7 @@ function Search() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default Search
+export default Search;

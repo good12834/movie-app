@@ -1,37 +1,37 @@
-import { useState, useEffect } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import MovieCard from '../components/MovieCard.jsx'
-
-const IMG_BASE = 'https://image.tmdb.org/t/p'
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { fetchFromTMDB, IMG_BASE } from '../api/tmdb';
+import MovieCard from '../components/MovieCard.jsx';
 
 function MovieDetail() {
-  const { id } = useParams()
-  const navigate = useNavigate()
-  const [movie, setMovie] = useState(null)
-  const [loading, setLoading] = useState(true)
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [movie, setMovie] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchMovie()
-  }, [id])
+    fetchMovie();
+  }, [id]);
 
   const fetchMovie = async () => {
     try {
-      const res = await axios.get(`/api/tmdb/movie/${id}`)
-      setMovie(res.data)
+      const data = await fetchFromTMDB(`/movie/${id}`, {
+        append_to_response: 'credits,videos,similar'
+      });
+      setMovie(data);
     } catch (err) {
-      console.error('Error fetching movie:', err)
+      console.error('Error fetching movie:', err);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500"></div>
       </div>
-    )
+    );
   }
 
   if (!movie) {
@@ -42,13 +42,13 @@ function MovieDetail() {
           Back to Home
         </button>
       </div>
-    )
+    );
   }
 
-  const director = movie.credits?.crew?.find((c) => c.job === 'Director')
-  const cast = movie.credits?.cast?.slice(0, 8) || []
-  const trailer = movie.videos?.results?.find((v) => v.type === 'Trailer' && v.site === 'YouTube')
-  const similar = movie.similar?.results?.slice(0, 5) || []
+  const director = movie.credits?.crew?.find((c) => c.job === 'Director');
+  const cast = movie.credits?.cast?.slice(0, 8) || [];
+  const trailer = movie.videos?.results?.find((v) => v.type === 'Trailer' && v.site === 'YouTube');
+  const similar = movie.similar?.results?.slice(0, 5) || [];
 
   return (
     <div>
@@ -182,7 +182,7 @@ function MovieDetail() {
         )}
       </div>
     </div>
-  )
+  );
 }
 
-export default MovieDetail
+export default MovieDetail;

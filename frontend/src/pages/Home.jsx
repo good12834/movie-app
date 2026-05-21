@@ -1,54 +1,54 @@
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import MovieCard from '../components/MovieCard.jsx'
+import { useState, useEffect } from 'react';
+import { fetchFromTMDB } from '../api/tmdb';
+import MovieCard from '../components/MovieCard.jsx';
 
 function Home() {
-  const [trending, setTrending] = useState([])
-  const [popular, setPopular] = useState([])
-  const [topRated, setTopRated] = useState([])
-  const [nowPlaying, setNowPlaying] = useState([])
-  const [loading, setLoading] = useState(true)
-  const [activeTab, setActiveTab] = useState('trending')
+  const [trending, setTrending] = useState([]);
+  const [popular, setPopular] = useState([]);
+  const [topRated, setTopRated] = useState([]);
+  const [nowPlaying, setNowPlaying] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState('trending');
 
   useEffect(() => {
-    fetchMovies()
-  }, [])
+    fetchMovies();
+  }, []);
 
   const fetchMovies = async () => {
     try {
       const [trendingRes, popularRes, topRatedRes, nowPlayingRes] = await Promise.all([
-        axios.get('/api/tmdb/trending'),
-        axios.get('/api/tmdb/popular'),
-        axios.get('/api/tmdb/top-rated'),
-        axios.get('/api/tmdb/now-playing'),
-      ])
-      setTrending(trendingRes.data.results)
-      setPopular(popularRes.data.results)
-      setTopRated(topRatedRes.data.results)
-      setNowPlaying(nowPlayingRes.data.results)
+        fetchFromTMDB('/trending/movie/week'),
+        fetchFromTMDB('/movie/popular'),
+        fetchFromTMDB('/movie/top_rated'),
+        fetchFromTMDB('/movie/now_playing'),
+      ]);
+      setTrending(trendingRes.results);
+      setPopular(popularRes.results);
+      setTopRated(topRatedRes.results);
+      setNowPlaying(nowPlayingRes.results);
     } catch (err) {
-      console.error('Error fetching movies:', err)
+      console.error('Error fetching movies:', err);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const tabs = [
     { id: 'trending', label: 'Trending', icon: 'local_fire_department' },
     { id: 'popular', label: 'Popular', icon: 'star' },
     { id: 'top-rated', label: 'Top Rated', icon: 'emoji_events' },
     { id: 'now-playing', label: 'Now Playing', icon: 'movie' },
-  ]
+  ];
 
   const getActiveMovies = () => {
     switch (activeTab) {
-      case 'trending': return trending
-      case 'popular': return popular
-      case 'top-rated': return topRated
-      case 'now-playing': return nowPlaying
-      default: return trending
+      case 'trending': return trending;
+      case 'popular': return popular;
+      case 'top-rated': return topRated;
+      case 'now-playing': return nowPlaying;
+      default: return trending;
     }
-  }
+  };
 
   if (loading) {
     return (
@@ -58,7 +58,7 @@ function Home() {
           <p className="text-slate-400">Loading movies from TMDB...</p>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -119,7 +119,7 @@ function Home() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
