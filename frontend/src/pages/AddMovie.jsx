@@ -2,24 +2,23 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
+const GENRES = ['Action', 'Comedy', 'Crime', 'Drama', 'Horror', 'Romance', 'Sci-Fi', 'Thriller']
+
+const INITIAL = {
+  title: '', genre: '', release_year: '',
+  director: '', description: '', poster_url: '', rating: '',
+}
+
 function AddMovie() {
   const navigate = useNavigate()
-  const [formData, setFormData] = useState({
-    title: '',
-    genre: '',
-    release_year: '',
-    director: '',
-    description: '',
-    poster_url: '',
-    rating: ''
-  })
+  const [formData, setFormData] = useState(INITIAL)
   const [error, setError] = useState('')
+  const [submitting, setSubmitting] = useState(false)
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+  const handleChange = e =>
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault()
     setError('')
 
@@ -28,147 +27,178 @@ function AddMovie() {
       return
     }
 
+    setSubmitting(true)
     try {
       await axios.post('/api/movies', {
         ...formData,
         release_year: parseInt(formData.release_year),
-        rating: parseFloat(formData.rating) || 0
+        rating: parseFloat(formData.rating) || 0,
       })
       navigate('/')
-    } catch (err) {
+    } catch {
       setError('Failed to add movie. Please try again.')
+    } finally {
+      setSubmitting(false)
     }
   }
 
+  const field = 'w-full bg-white/[0.03] border border-white/[0.08] rounded-lg px-3.5 py-2.5 text-sm text-slate-200 placeholder-slate-600/60 outline-none transition-all duration-150 focus:border-violet-500/50 focus:bg-violet-500/[0.05]'
+
   return (
-    <div className="container mx-auto px-4 py-8 max-w-2xl">
+    <div
+      className="container mx-auto px-6 py-10 max-w-xl"
+      style={{ fontFamily: "'DM Sans', sans-serif" }}
+    >
+      {/* back */}
       <button
         onClick={() => navigate('/')}
-        className="text-slate-400 hover:text-white mb-6 flex items-center gap-2 transition-colors"
+        className="flex items-center gap-1.5 text-slate-500 hover:text-violet-300
+                   text-xs mb-6 transition-colors duration-150"
       >
-        ← Back to Movies
+        <span className="material-icons text-[14px]">arrow_back</span>
+        Back to movies
       </button>
 
-      <h1 className="text-3xl font-bold text-white mb-8">Add New Movie</h1>
+      {/* heading */}
+      <p className="text-[10px] uppercase tracking-widest text-violet-500/60 mb-1">Catalog</p>
+      <h1
+        className="text-2xl font-extrabold text-white mb-5 tracking-tight"
+        style={{ fontFamily: "'Syne', sans-serif" }}
+      >
+        Add new movie
+      </h1>
 
+      {/* error */}
       {error && (
-        <div className="bg-red-600/20 border border-red-600/30 text-red-400 px-4 py-3 rounded-lg mb-6">
+        <div className="flex items-center gap-2.5 bg-red-500/[0.08] border border-red-500/25
+                        text-red-300 text-xs rounded-lg px-4 py-3 mb-5">
+          <span className="material-icons text-[16px] shrink-0">error_outline</span>
           {error}
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="h-px bg-white/[0.04] mb-6" />
+
+      <form onSubmit={handleSubmit} className="space-y-4">
+
+        {/* title */}
         <div>
-          <label className="block text-sm font-medium text-slate-300 mb-2">
-            Title <span className="text-red-400">*</span>
+          <label className="block text-[11px] text-slate-500 mb-1.5 tracking-wide">
+            Title <span className="text-red-500/70">*</span>
           </label>
           <input
-            type="text"
-            name="title"
-            value={formData.title}
-            onChange={handleChange}
-            className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500"
+            type="text" name="title" value={formData.title} onChange={handleChange}
             placeholder="Enter movie title"
+            className={field}
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* genre + year */}
+        <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
-              Genre <span className="text-red-400">*</span>
+            <label className="block text-[11px] text-slate-500 mb-1.5 tracking-wide">
+              Genre <span className="text-red-500/70">*</span>
             </label>
-            <select
-              name="genre"
-              value={formData.genre}
-              onChange={handleChange}
-              className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-600 text-white focus:outline-none focus:border-indigo-500"
-            >
-              <option value="">Select genre</option>
-              <option value="Action">Action</option>
-              <option value="Comedy">Comedy</option>
-              <option value="Crime">Crime</option>
-              <option value="Drama">Drama</option>
-              <option value="Horror">Horror</option>
-              <option value="Romance">Romance</option>
-              <option value="Sci-Fi">Sci-Fi</option>
-              <option value="Thriller">Thriller</option>
-            </select>
+            <div className="relative">
+              <select
+                name="genre" value={formData.genre} onChange={handleChange}
+                className={`${field} appearance-none pr-8 cursor-pointer`}
+              >
+                <option value="">Select genre</option>
+                {GENRES.map(g => <option key={g} value={g}>{g}</option>)}
+              </select>
+              <span className="material-icons absolute right-2.5 top-1/2 -translate-y-1/2
+                               text-slate-600 text-[16px] pointer-events-none">
+                expand_more
+              </span>
+            </div>
           </div>
-
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">
-              Release Year <span className="text-red-400">*</span>
+            <label className="block text-[11px] text-slate-500 mb-1.5 tracking-wide">
+              Release year <span className="text-red-500/70">*</span>
             </label>
             <input
-              type="number"
-              name="release_year"
-              value={formData.release_year}
-              onChange={handleChange}
-              className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500"
+              type="number" name="release_year" value={formData.release_year} onChange={handleChange}
               placeholder="2024"
+              className={field}
             />
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* director + rating */}
+        <div className="grid grid-cols-2 gap-3">
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">Director</label>
+            <label className="block text-[11px] text-slate-500 mb-1.5 tracking-wide">
+              Director
+            </label>
             <input
-              type="text"
-              name="director"
-              value={formData.director}
-              onChange={handleChange}
-              className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500"
+              type="text" name="director" value={formData.director} onChange={handleChange}
               placeholder="Director name"
+              className={field}
             />
           </div>
-
           <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">Rating (0-10)</label>
+            <label className="block text-[11px] text-slate-500 mb-1.5 tracking-wide">
+              Rating <span className="text-slate-700">(0–10)</span>
+            </label>
             <input
-              type="number"
-              name="rating"
-              value={formData.rating}
-              onChange={handleChange}
-              step="0.1"
-              min="0"
-              max="10"
-              className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500"
-              placeholder="8.5"
+              type="number" name="rating" value={formData.rating} onChange={handleChange}
+              placeholder="8.5" step="0.1" min="0" max="10"
+              className={field}
             />
           </div>
         </div>
 
+        {/* poster url */}
         <div>
-          <label className="block text-sm font-medium text-slate-300 mb-2">Poster URL</label>
+          <label className="block text-[11px] text-slate-500 mb-1.5 tracking-wide">
+            Poster URL
+          </label>
           <input
-            type="url"
-            name="poster_url"
-            value={formData.poster_url}
-            onChange={handleChange}
-            className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500"
+            type="url" name="poster_url" value={formData.poster_url} onChange={handleChange}
             placeholder="https://example.com/poster.jpg"
+            className={field}
           />
         </div>
 
+        {/* description */}
         <div>
-          <label className="block text-sm font-medium text-slate-300 mb-2">Description</label>
+          <label className="block text-[11px] text-slate-500 mb-1.5 tracking-wide">
+            Description
+          </label>
           <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            rows="4"
-            className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-600 text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 resize-none"
-            placeholder="Brief description of the movie..."
-          ></textarea>
+            name="description" value={formData.description} onChange={handleChange}
+            rows={4} placeholder="Brief description of the movie…"
+            className={`${field} resize-none`}
+          />
         </div>
 
+        {/* submit */}
         <button
           type="submit"
-          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-4 rounded-lg font-semibold text-lg transition-colors"
+          disabled={submitting}
+          className="w-full flex items-center justify-center gap-2 mt-2
+                     bg-violet-600 hover:bg-violet-500 disabled:opacity-50
+                     text-white text-sm font-medium rounded-lg py-3
+                     transition-colors duration-150"
+          style={{ fontFamily: "'Syne', sans-serif" }}
         >
-          Add Movie
+          {submitting ? (
+            <>
+              <span className="w-4 h-4 rounded-full border-2 border-white/20 border-t-white animate-spin" />
+              Adding…
+            </>
+          ) : (
+            <>
+              <span className="material-icons text-[16px]">add_circle_outline</span>
+              Add movie
+            </>
+          )}
         </button>
+
+        <p className="text-center text-[10px] text-slate-700">
+          Fields marked <span className="text-red-500/60">*</span> are required
+        </p>
       </form>
     </div>
   )
