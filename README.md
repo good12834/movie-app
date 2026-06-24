@@ -10,6 +10,8 @@ A full-stack entertainment platform built with React + Vite on the frontend and 
 - Add Movies - Contribute new movies to the platform
 - Watchlist - Save movies to your personal watchlist
 - User Profile - Manage your account and preferences
+- Fully Responsive - Works on all devices (mobile, tablet, desktop)
+- PWA Support - Install as a native app
 
 ## Tech Stack
 
@@ -103,6 +105,7 @@ npm run frontend
 movie-app/
 ├── frontend/
 │   ├── public/              # Static assets
+│   │   └── manifest.json    # PWA manifest
 │   └── src/
 │       ├── components/      # Reusable UI components
 │       │   ├── Footer/
@@ -128,6 +131,20 @@ movie-app/
 └── README.md
 ```
 
+## Responsive Design
+
+The app is fully responsive and optimized for all screen sizes:
+- **Desktop** (1024px+): Full multi-column layouts
+- **Tablet** (768px - 1023px): Adjusted grids and spacing
+- **Mobile** (480px - 767px): Stacked layouts, touch-optimized
+- **Small Mobile** (< 480px): Compact UI with larger touch targets
+
+### PWA Features
+- Installable on home screen (iOS & Android)
+- Offline-ready architecture
+- Safe area support for notched devices
+- Standalone display mode
+
 ## Contributing
 
 Contributions are welcome! Please follow these steps:
@@ -142,10 +159,6 @@ Contributions are welcome! Please follow these steps:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Author
+## Note
 
-Built with love by Your Name
-
----
-
-Note: This project uses MySQL as the database. Make sure to have MySQL installed and running before starting the backend server.
+This project uses MySQL as the database. Make sure to have MySQL installed and running before starting the backend server.
