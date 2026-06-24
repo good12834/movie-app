@@ -5,7 +5,9 @@
 
 /* ── Imports ── */
 @import "bootstrap/dist/css/bootstrap.min.css";
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* ============================================
    1. CSS VARIABLES

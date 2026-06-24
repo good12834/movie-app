@@ -1,7 +1,7 @@
 // Navbar.jsx
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { Clapperboard, Home, Film, Tv, Folder, ClipboardList } from '@wair/lucide-react'
+import { Clapperboard, Home, Film, Tv, Folder, ClipboardList } from 'lucide-react'
 import styles from './navbar.module.css'
 
 const NAV_LINKS = [
