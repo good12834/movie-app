@@ -1,7 +1,8 @@
 // Navbar.jsx
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { Clapperboard, Home, Film, Tv, Folder, ClipboardList } from 'lucide-react'
+import { Clapperboard, Home, Film, Tv, Folder, ClipboardList, Shuffle } from 'lucide-react'
+import { fetchFromTMDB } from '../../api/tmdb'
 import styles from './navbar.module.css'
 
 const NAV_LINKS = [
@@ -39,6 +40,25 @@ function Navbar() {
   const [isSearchActive, setIsSearchActive] = useState(false)
   const [isProfileOpen, setIsProfileOpen] = useState(false)
   const [isNotificationOpen, setIsNotificationOpen] = useState(false)
+  const [randomLoading, setRandomLoading] = useState(false)
+
+  const handleRandom = async () => {
+    setRandomLoading(true)
+    try {
+      const randomPage = Math.floor(Math.random() * 499) + 1
+      const data = await fetchFromTMDB('/discover/movie', { sort_by: 'popularity.desc', page: randomPage, vote_count_gte: 50 })
+      const results = data.results
+      if (results.length > 0) {
+        const movie = results[Math.floor(Math.random() * results.length)]
+        navigate(`/movie/${movie.id}`)
+      }
+    } catch (err) {
+      console.error('Error fetching random movie:', err)
+    } finally {
+      setRandomLoading(false)
+    }
+  }
+
   const [notifications, setNotifications] = useState(() => {
     const saved = localStorage.getItem('cineverse_notifications')
     if (saved) {
@@ -165,6 +185,21 @@ function Navbar() {
 
           {/* Right Section: Actions */}
           <div className={styles.navRight}>
+            {/* Random Movie */}
+            <button
+              className={`${styles.iconBtn} ${styles.randomBtn}`}
+              onClick={handleRandom}
+              disabled={randomLoading}
+              aria-label="Random movie"
+              title="Random movie"
+            >
+              {randomLoading ? (
+                <span className={styles.randomSpinner} />
+              ) : (
+                <Shuffle size={20} />
+              )}
+            </button>
+
             {/* Mobile Search Toggle */}
             <button 
               className={`${styles.iconBtn} ${styles.searchToggle}`}
@@ -354,6 +389,11 @@ function Navbar() {
 
           {/* Actions Section */}
           <div className={styles.mobileActions}>
+            <button className={styles.mobileAction} onClick={() => { setIsMobileMenuOpen(false); handleRandom() }}>
+              <Shuffle size={20} />
+              <span>Random</span>
+              {randomLoading && <span className={styles.mobileBadge}>...</span>}
+            </button>
             <button className={styles.mobileAction} onClick={() => { setIsMobileMenuOpen(false); setIsNotificationOpen(true) }}>
               <span className="material-icons">notifications_outline</span>
               <span>Notifications</span>

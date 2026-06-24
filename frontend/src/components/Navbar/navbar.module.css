@@ -294,6 +294,35 @@
   z-index: 2;
 }
 
+/* ── Random Button ── */
+.randomBtn {
+  color: var(--accent);
+}
+
+.randomBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.randomBtn:hover:not(:disabled) {
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+.randomSpinner {
+  display: block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(229, 9, 20, 0.2);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: randomSpin 0.6s linear infinite;
+}
+
+@keyframes randomSpin {
+  to { transform: rotate(360deg); }
+}
+
 /* Mobile search toggle hidden by default on desktop */
 .searchToggle {
   display: none;

@@ -96,4 +96,28 @@ router.get('/genres', async (req, res) => {
   }
 });
 
+// Get a random movie
+router.get('/random', async (req, res) => {
+  try {
+    // Pick a random page (TMDB caps at 500)
+    const randomPage = Math.floor(Math.random() * 499) + 1;
+    const response = await axios.get(`${TMDB_BASE_URL}/discover/movie`, {
+      params: {
+        api_key: TMDB_API_KEY,
+        sort_by: 'popularity.desc',
+        page: randomPage,
+        vote_count_gte: 50,
+      }
+    });
+    const results = response.data.results;
+    if (results.length === 0) {
+      return res.status(404).json({ error: 'No movies found' });
+    }
+    const randomMovie = results[Math.floor(Math.random() * results.length)];
+    res.json(randomMovie);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;
