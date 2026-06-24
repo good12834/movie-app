@@ -1,15 +1,145 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- ─── Meta ─── -->
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/movie-app/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0f" />
+    <meta name="description" content="CineVerse - Discover, watch, and enjoy unlimited movies and shows in stunning 4K quality." />
+    
+    <!-- ─── Favicon ─── -->
+    <link rel="icon" type="image/svg+xml" href="/movie-app/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    
+    <!-- ─── Fonts ─── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" 
+      rel="stylesheet" 
+    />
+    
+    <!-- ─── Icons ─── -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <title>MovieHub - Discover Movies</title>
-    <script type="module" crossorigin src="/movie-app/assets/index-Dh6ksjnY.js"></script>
-    <link rel="stylesheet" crossorigin href="/movie-app/assets/index-onv65bb5.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    
+    <!-- ─── Title ─── -->
+    <title>CineVerse - Premium Entertainment</title>
+    
+    <!-- ─── Preconnect for Performance ─── -->
+    <link rel="preconnect" href="https://image.tmdb.org" />
+    <link rel="preconnect" href="https://api.themoviedb.org" />
+    
+    <!-- ─── Styles ─── -->
+    <style>
+      /* ── Critical CSS ── */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      html, body {
+        min-height: 100vh;
+        background: #0a0a0f;
+        color: #f8fafc;
+        font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      #root {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* ── Loading State ── */
+      .app-loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        gap: 24px;
+        background: #0a0a0f;
+      }
+      
+      .app-loading-spinner {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 3px solid rgba(212, 175, 55, 0.1);
+        border-top-color: #d4af37;
+        animation: spin 0.8s linear infinite;
+      }
+      
+      .app-loading-text {
+        font-size: 14px;
+        font-weight: 500;
+        color: #94a3b8;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-family: 'Syne', sans-serif;
+      }
+      
+      .app-loading-bar {
+        width: 200px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      
+      .app-loading-bar-fill {
+        height: 100%;
+        width: 40%;
+        background: linear-gradient(90deg, #d4af37, #fff3a1);
+        border-radius: 2px;
+        animation: loadingProgress 1.5s ease-in-out infinite;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      @keyframes loadingProgress {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(300%); }
+      }
+      
+      /* ── Responsive Loading ── */
+      @media (max-width: 480px) {
+        .app-loading-spinner {
+          width: 36px;
+          height: 36px;
+        }
+        .app-loading-text {
+          font-size: 12px;
+        }
+        .app-loading-bar {
+          width: 160px;
+        }
+      }
+    </style>
+    <script type="module" crossorigin src="/movie-app/assets/index-3CnRJzT3.js"></script>
+    <link rel="stylesheet" crossorigin href="/movie-app/assets/index-RuAxVik5.css">
   </head>
+  
   <body>
-    <div id="root"></div>
+    <!-- ─── Root Element ─── -->
+    <div id="root">
+      <!-- Loading state will be replaced by React -->
+      <div class="app-loading">
+        <div class="app-loading-spinner"></div>
+        <p class="app-loading-text">Loading CineVerse...</p>
+        <div class="app-loading-bar">
+          <div class="app-loading-bar-fill"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ─── Scripts ─── -->
   </body>
 </html>
