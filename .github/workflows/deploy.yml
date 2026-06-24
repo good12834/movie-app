@@ -30,7 +30,7 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
 
       - name: Install dependencies
-        run: npm install
+        run: HUSKY=0 npm install
         working-directory: frontend
 
       - name: Build
