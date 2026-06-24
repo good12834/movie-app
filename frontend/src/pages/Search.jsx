@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { fetchFromTMDB } from '../api/tmdb'
-import MovieCard from '../components/MovieCard.jsx'
+import MovieCard from '../components/MovieCard/MovieCard.jsx'
 
 function Search() {
   const [searchParams] = useSearchParams()

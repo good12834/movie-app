@@ -42,28 +42,28 @@ function AddMovie() {
     }
   }
 
-  const field = 'w-full bg-white/[0.03] border border-white/[0.08] rounded-lg px-3.5 py-2.5 text-sm text-slate-200 placeholder-slate-600/60 outline-none transition-all duration-150 focus:border-violet-500/50 focus:bg-violet-500/[0.05]'
+  const field = 'w-full bg-white/[0.02] border border-white/[0.08] rounded-lg px-3.5 py-2.5 text-sm text-slate-200 placeholder-slate-600/60 outline-none transition-all duration-150 focus:border-amber-500/50 focus:bg-amber-500/[0.03] focus:shadow-[0_0_15px_rgba(212,175,55,0.2),0_0_30px_rgba(212,175,55,0.05)]'
 
   return (
     <div
-      className="container mx-auto px-6 py-10 max-w-xl"
-      style={{ fontFamily: "'DM Sans', sans-serif" }}
+      className="container mx-auto px-6 py-10 max-w-xl bg-black min-h-screen relative z-10"
+      style={{ fontFamily: "'Outfit', 'DM Sans', sans-serif" }}
     >
       {/* back */}
       <button
         onClick={() => navigate('/')}
-        className="flex items-center gap-1.5 text-slate-500 hover:text-violet-300
-                   text-xs mb-6 transition-colors duration-150"
+        className="flex items-center gap-1.5 text-slate-500 hover:text-amber-400
+                   text-xs mb-6 transition-colors duration-150 cursor-pointer"
       >
         <span className="material-icons text-[14px]">arrow_back</span>
         Back to movies
       </button>
 
       {/* heading */}
-      <p className="text-[10px] uppercase tracking-widest text-violet-500/60 mb-1">Catalog</p>
+      <p className="text-[10px] uppercase tracking-widest text-amber-500/60 mb-1 font-medium">Catalog</p>
       <h1
         className="text-2xl font-extrabold text-white mb-5 tracking-tight"
-        style={{ fontFamily: "'Syne', sans-serif" }}
+        style={{ fontFamily: "'Syne', sans-serif", textShadow: '0 0 15px rgba(212,175,55,0.12)' }}
       >
         Add new movie
       </h1>
@@ -77,7 +77,7 @@ function AddMovie() {
         </div>
       )}
 
-      <div className="h-px bg-white/[0.04] mb-6" />
+      <div className="h-px bg-amber-500/10 mb-6" />
 
       <form onSubmit={handleSubmit} className="space-y-4">
 
@@ -108,7 +108,7 @@ function AddMovie() {
                 {GENRES.map(g => <option key={g} value={g}>{g}</option>)}
               </select>
               <span className="material-icons absolute right-2.5 top-1/2 -translate-y-1/2
-                               text-slate-600 text-[16px] pointer-events-none">
+                               text-slate-650 text-[16px] pointer-events-none">
                 expand_more
               </span>
             </div>
@@ -177,15 +177,14 @@ function AddMovie() {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full flex items-center justify-center gap-2 mt-2
-                     bg-violet-600 hover:bg-violet-500 disabled:opacity-50
-                     text-white text-sm font-medium rounded-lg py-3
-                     transition-colors duration-150"
+          className="w-full flex items-center justify-center gap-2 mt-2 btn-gold-primary
+                     disabled:opacity-50 text-black text-sm font-medium rounded-lg py-3
+                     transition-colors duration-150 cursor-pointer"
           style={{ fontFamily: "'Syne', sans-serif" }}
         >
           {submitting ? (
             <>
-              <span className="w-4 h-4 rounded-full border-2 border-white/20 border-t-white animate-spin" />
+              <span className="w-4 h-4 rounded-full border-2 border-black/20 border-t-black animate-spin" />
               Adding…
             </>
           ) : (
@@ -196,7 +195,7 @@ function AddMovie() {
           )}
         </button>
 
-        <p className="text-center text-[10px] text-slate-700">
+        <p className="text-center text-[10px] text-slate-500 font-medium">
           Fields marked <span className="text-red-500/60">*</span> are required
         </p>
       </form>

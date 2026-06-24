@@ -1,0 +1,677 @@
+/* Watchlist.module.css */
+
+.watchlist {
+  background: #0a0a0f;
+  min-height: 100vh;
+  padding: 40px 24px;
+  position: relative;
+  z-index: 10;
+  font-family: 'Outfit', 'DM Sans', sans-serif;
+}
+
+.watchlistContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== HEADER ===== */
+.header {
+  margin-bottom: 24px;
+}
+
+.headerLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(212, 175, 55, 0.6);
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.headerTitle {
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+  font-family: 'Syne', sans-serif;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+}
+
+/* ===== STATS BAR ===== */
+.statsBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(212, 175, 55, 0.08);
+  border-radius: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.statsCount {
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.statsCount span {
+  color: #d4af37;
+  font-weight: 700;
+}
+
+.statsDivider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.statsActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.statsAction {
+  padding: 4px 12px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.statsAction:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.2);
+  color: #d4af37;
+}
+
+.activeSort {
+  background: rgba(212, 175, 55, 0.15) !important;
+  border-color: rgba(212, 175, 55, 0.3) !important;
+  color: #d4af37 !important;
+}
+
+.sortGroup {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.statsActionDanger {
+  color: rgba(239, 68, 68, 0.6);
+}
+
+.statsActionDanger:hover {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+}
+
+/* ===== EMPTY STATE ===== */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  gap: 16px;
+}
+
+.emptyIcon {
+  font-size: 56px;
+  color: rgba(212, 175, 55, 0.3);
+  display: block;
+}
+
+.emptyTitle {
+  color: #94a3b8;
+  font-size: 16px;
+}
+
+.emptyLink {
+  color: #d4af37;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease;
+  padding: 8px 20px;
+  border-radius: 50px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.emptyLink:hover {
+  color: #fff3a1;
+  background: rgba(212, 175, 55, 0.1);
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+/* ===== MOVIE GRID ===== */
+.movieGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .movieGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .movieGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .movieGrid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* ===== MOVIE CARD ===== */
+.movieCardWrapper {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.movieCardWrapper:hover {
+  transform: translateY(-6px);
+}
+
+.movieCard {
+  background: #0a0a0c;
+  border: 1px solid rgba(212, 175, 55, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: block;
+  height: 100%;
+}
+
+.movieCard:hover {
+  border-color: rgba(212, 175, 55, 0.25);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.05);
+}
+
+/* Poster */
+.posterWrapper {
+  position: relative;
+  aspect-ratio: 2/3;
+  overflow: hidden;
+  background: #0a0a0c;
+}
+
+.posterImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.movieCard:hover .posterImage {
+  transform: scale(1.05);
+}
+
+.posterPlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a0c;
+}
+
+.posterPlaceholder span {
+  font-size: 48px;
+  color: rgba(212, 175, 55, 0.15);
+}
+
+/* Rank Badge */
+.rankBadge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  padding: 2px 10px;
+  border-radius: 50px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  color: #d4af37;
+  font-size: 10px;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Movie Info */
+.movieInfo {
+  padding: 12px 14px 14px;
+}
+
+.movieTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+  transition: color 0.3s ease;
+}
+
+.movieCard:hover .movieTitle {
+  color: #d4af37;
+}
+
+.movieYear {
+  font-size: 12px;
+  color: #475569;
+}
+
+/* Remove Button */
+.removeBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.movieCardWrapper:hover .removeBtn,
+.movieCardWrapper:focus-within .removeBtn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.removeBtn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #ef4444;
+  transform: scale(1.1);
+}
+
+.removeBtn span {
+  font-size: 16px;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.movieCardWrapper {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.movieCardWrapper:nth-child(1) { animation-delay: 0.05s; }
+.movieCardWrapper:nth-child(2) { animation-delay: 0.10s; }
+.movieCardWrapper:nth-child(3) { animation-delay: 0.15s; }
+.movieCardWrapper:nth-child(4) { animation-delay: 0.20s; }
+.movieCardWrapper:nth-child(5) { animation-delay: 0.25s; }
+.movieCardWrapper:nth-child(6) { animation-delay: 0.30s; }
+.movieCardWrapper:nth-child(7) { animation-delay: 0.35s; }
+.movieCardWrapper:nth-child(8) { animation-delay: 0.40s; }
+.movieCardWrapper:nth-child(9) { animation-delay: 0.45s; }
+.movieCardWrapper:nth-child(10) { animation-delay: 0.50s; }
+
+/* ===== RESPONSIVE ===== */
+
+/* 768px */
+@media (max-width: 768px) {
+  .watchlist {
+    padding: 24px 16px;
+  }
+
+  .headerTitle {
+    font-size: 24px;
+  }
+
+  .statsBar {
+    padding: 10px 14px;
+    gap: 8px;
+  }
+
+  .statsCount {
+    font-size: 13px;
+  }
+
+  .statsActions {
+    margin-left: 0;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+
+  .statsAction {
+    font-size: 11px;
+    padding: 3px 10px;
+  }
+
+  .movieGrid {
+    gap: 12px;
+  }
+
+  .movieInfo {
+    padding: 10px 12px 12px;
+  }
+
+  .movieTitle {
+    font-size: 13px;
+  }
+
+  .movieYear {
+    font-size: 11px;
+  }
+
+  .removeBtn {
+    width: 28px;
+    height: 28px;
+    opacity: 1;
+    transform: scale(1);
+    top: 6px;
+    right: 6px;
+  }
+
+  .removeBtn span {
+    font-size: 14px;
+  }
+}
+
+/* 480px */
+@media (max-width: 480px) {
+  .watchlist {
+    padding: 16px 12px;
+  }
+
+  .headerTitle {
+    font-size: 20px;
+  }
+
+  .headerLabel {
+    font-size: 9px;
+  }
+
+  .movieGrid {
+    gap: 10px;
+  }
+
+  .movieInfo {
+    padding: 8px 10px 10px;
+  }
+
+  .movieTitle {
+    font-size: 12px;
+  }
+
+  .movieYear {
+    font-size: 10px;
+  }
+
+  .statsBar {
+    padding: 8px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .statsDivider {
+    display: none;
+  }
+
+  .statsActions {
+    justify-content: flex-start;
+  }
+
+  .statsCount {
+    font-size: 12px;
+  }
+
+  .statsAction {
+    font-size: 10px;
+    padding: 2px 8px;
+  }
+
+  .emptyState {
+    padding: 60px 16px;
+  }
+
+  .emptyIcon {
+    font-size: 48px;
+  }
+
+  .emptyTitle {
+    font-size: 14px;
+  }
+
+  .emptyLink {
+    font-size: 13px;
+    padding: 6px 16px;
+  }
+
+  .removeBtn {
+    width: 26px;
+    height: 26px;
+    top: 4px;
+    right: 4px;
+  }
+
+  .removeBtn span {
+    font-size: 12px;
+  }
+
+  .rankBadge {
+    font-size: 9px;
+    padding: 1px 8px;
+    bottom: 6px;
+    left: 6px;
+  }
+}
+
+/* 360px */
+@media (max-width: 360px) {
+  .movieGrid {
+    gap: 8px;
+  }
+
+  .movieTitle {
+    font-size: 11px;
+  }
+
+  .movieYear {
+    font-size: 9px;
+  }
+
+  .movieInfo {
+    padding: 6px 8px 8px;
+  }
+
+  .movieCard {
+    border-radius: 12px;
+  }
+
+  .removeBtn {
+    width: 22px;
+    height: 22px;
+  }
+
+  .removeBtn span {
+    font-size: 10px;
+  }
+}
+
+/* Touch-friendly */
+@media (hover: none) and (pointer: coarse) {
+  .movieCardWrapper:hover {
+    transform: none;
+  }
+
+  .movieCard:hover {
+    border-color: rgba(212, 175, 55, 0.08);
+    box-shadow: none;
+  }
+
+  .movieCard:hover .posterImage {
+    transform: none;
+  }
+
+  .movieCard:hover .movieTitle {
+    color: #e2e8f0;
+  }
+
+  .removeBtn {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .removeBtn:active {
+    transform: scale(0.9);
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #ef4444;
+  }
+
+  .statsAction:active {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.2);
+    color: #d4af37;
+  }
+
+  .statsActionDanger:active {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+  }
+
+  .emptyLink:active {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: rgba(212, 175, 55, 0.3);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .movieCardWrapper {
+    animation: none !important;
+  }
+
+  .movieCardWrapper:hover {
+    transform: none !important;
+  }
+
+  .posterImage {
+    transition: none !important;
+  }
+
+  .movieCard {
+    transition: none !important;
+  }
+
+  .removeBtn {
+    transition: none !important;
+  }
+
+  .statsAction {
+    transition: none !important;
+  }
+
+  .emptyLink {
+    transition: none !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .watchlist {
+    background: white;
+    padding: 40px;
+  }
+
+  .headerTitle {
+    color: #333;
+  }
+
+  .statsBar {
+    background: #f5f5f5;
+    border-color: #ddd;
+  }
+
+  .statsCount {
+    color: #666;
+  }
+
+  .statsCount span {
+    color: #333;
+  }
+
+  .statsActions {
+    display: none;
+  }
+
+  .movieCard {
+    border-color: #ddd;
+    box-shadow: none !important;
+  }
+
+  .movieCard:hover {
+    border-color: #ddd;
+  }
+
+  .movieTitle {
+    color: #333;
+  }
+
+  .movieYear {
+    color: #666;
+  }
+
+  .removeBtn {
+    display: none;
+  }
+
+  .rankBadge {
+    background: #f5f5f5;
+    border-color: #ddd;
+    color: #333;
+  }
+
+  .emptyLink {
+    border-color: #ddd;
+    color: #333;
+  }
+
+  .movieCardWrapper:hover {
+    transform: none;
+  }
+
+  .posterImage {
+    transform: none !important;
+  }
+}

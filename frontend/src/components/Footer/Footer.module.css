@@ -1,0 +1,310 @@
+/* ============================================================
+   CineVerse Footer — Pro Style
+   Consistent with navbar.module.css & Home.module.css
+   ============================================================ */
+
+:root {
+  --accent: #e50914;
+  --accent-dim: rgba(229, 9, 20, 0.14);
+  --bg-base: #08080e;
+  --bg-surface: #0f0f1a;
+  --bg-card: rgba(255, 255, 255, 0.04);
+  --border: rgba(255, 255, 255, 0.07);
+  --border-strong: rgba(255, 255, 255, 0.12);
+  --text-primary: #f0f0f5;
+  --text-secondary: rgba(240, 240, 245, 0.55);
+  --text-muted: rgba(240, 240, 245, 0.3);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-pill: 999px;
+  --content-max: 1440px;
+  --content-pad: 48px;
+  --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Base ── */
+.footer {
+  background: var(--bg-base);
+  border-top: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Red hairline accent at the very top */
+.footerAccent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(229, 9, 20, 0.6) 30%,
+    rgba(229, 9, 20, 0.9) 50%,
+    rgba(229, 9, 20, 0.6) 70%,
+    transparent 100%
+  );
+}
+
+/* Subtle ambient glow behind the brand column */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: -60px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(229, 9, 20, 0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.footerContainer {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--content-pad);
+}
+
+/* ── Main grid ── */
+.footerGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 64px;
+  padding: 64px 0 52px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ── Brand column ── */
+.footerBrand {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.logoIcon {
+  width: 34px;
+  height: 34px;
+  background: var(--accent);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px rgba(229, 9, 20, 0.4);
+  flex-shrink: 0;
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+
+.logo:hover .logoIcon {
+  box-shadow: 0 0 30px rgba(229, 9, 20, 0.6);
+  transform: scale(1.06);
+}
+
+.logoIcon .material-icons {
+  font-size: 18px !important;
+  color: #fff;
+}
+
+.logoText {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.3px;
+}
+
+.brandDescription {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 300px;
+}
+
+/* Social icons */
+.socialLinks {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.socialLink {
+  opacity: 0.55;
+  border-radius: 50% !important;
+  transition: opacity var(--transition), transform var(--transition) !important;
+}
+
+.socialLink:hover {
+  opacity: 1 !important;
+  transform: translateY(-2px) !important;
+}
+
+/* ── Link columns ── */
+.footerSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footerHeading {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  position: relative;
+  padding-bottom: 14px;
+}
+
+.footerHeading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 20px;
+  height: 1.5px;
+  background: var(--accent);
+  border-radius: var(--radius-pill);
+}
+
+.footerList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footerLink {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition), padding-left var(--transition);
+  display: inline-block;
+}
+
+.footerLink:hover {
+  color: var(--text-primary);
+  padding-left: 4px;
+}
+
+/* ── Bottom bar ── */
+.footerBottom {
+  padding: 24px 0;
+}
+
+.bottomContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.copyright {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+
+.legalLinks {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legalLink {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.legalLink:hover {
+  color: var(--text-secondary);
+}
+
+.legalDivider {
+  font-size: 10px;
+  color: var(--text-muted);
+  opacity: 0.4;
+}
+
+/* 4K badge */
+.qualityBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  font-size: 11.5px;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+}
+
+.qualityBadge .material-icons {
+  font-size: 15px !important;
+  color: rgba(229, 9, 20, 0.7);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  :root {
+    --content-pad: 24px;
+  }
+
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 48px 0 40px;
+  }
+
+  .footerBrand {
+    grid-column: 1 / -1;
+  }
+
+  .brandDescription {
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --content-pad: 16px;
+  }
+
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding: 40px 0 32px;
+  }
+
+  .footerBrand {
+    grid-column: 1 / -1;
+  }
+
+  .bottomContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .qualityBadge {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 400px) {
+  .footerGrid {
+    grid-template-columns: 1fr;
+  }
+}

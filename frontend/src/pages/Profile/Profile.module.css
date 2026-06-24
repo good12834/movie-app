@@ -1,0 +1,736 @@
+/* Profile.module.css */
+
+.profile {
+  background: #0a0a0f;
+  min-height: 100vh;
+  padding: 40px 24px;
+  position: relative;
+  z-index: 10;
+  font-family: 'Outfit', 'DM Sans', sans-serif;
+}
+
+.profileContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== HEADER ===== */
+.header {
+  margin-bottom: 32px;
+}
+
+.headerLabel {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(212, 175, 55, 0.6);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.headerTitle {
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+  font-family: 'Syne', sans-serif;
+  text-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+}
+
+.headerTitle span {
+  background: linear-gradient(135deg, #aa7c11 0%, #d4af37 40%, #fff3a1 50%, #d4af37 60%, #aa7c11 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.divider {
+  height: 1px;
+  background: rgba(212, 175, 55, 0.1);
+  margin-bottom: 32px;
+}
+
+/* ===== PROFILE CARD ===== */
+.profileCard {
+  background: rgba(10, 10, 12, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(212, 175, 55, 0.05);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.3s ease;
+}
+
+.profileCard:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(212, 175, 55, 0.05);
+}
+
+@media (min-width: 640px) {
+  .profileCard {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+  }
+}
+
+/* Avatar */
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000000;
+  font-size: 28px;
+  font-weight: 700;
+  font-family: 'Syne', sans-serif;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #aa7c11 0%, #d4af37 100%);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+  transition: all 0.3s ease;
+}
+
+.profileCard:hover .avatar {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
+}
+
+/* Profile Info */
+.profileInfo {
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .profileInfo {
+    text-align: left;
+  }
+}
+
+.profileName {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+}
+
+.profileEmail {
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+.profileJoined {
+  color: #475569;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+/* Edit Button */
+.editButton {
+  margin-left: auto;
+  padding: 8px 20px;
+  border-radius: 50px;
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  color: #d4af37;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'DM Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.editButton:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: rgba(212, 175, 55, 0.4);
+  transform: translateY(-2px);
+}
+
+.editButton span {
+  font-size: 18px;
+}
+
+/* ===== STATS GRID ===== */
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 640px) {
+  .statsGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.statCard {
+  background: rgba(10, 10, 12, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  border-color: rgba(212, 175, 55, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.statIcon {
+  color: rgba(212, 175, 55, 0.7);
+  font-size: 28px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.statValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+  font-family: 'Syne', sans-serif;
+  background: linear-gradient(135deg, #d4af37, #fff3a1);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* ===== QUICK LINKS ===== */
+.quickLinks {
+  background: rgba(10, 10, 12, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  border-radius: 16px;
+  padding: 24px;
+  transition: all 0.3s ease;
+}
+
+.quickLinks:hover {
+  border-color: rgba(212, 175, 55, 0.2);
+}
+
+.quickLinksTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+}
+
+.linksList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.linkItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.linkItem:hover {
+  background: rgba(212, 175, 55, 0.08);
+  color: #e2e8f0;
+  transform: translateX(4px);
+}
+
+.linkItem span {
+  font-size: 20px;
+  color: #64748b;
+  transition: color 0.3s ease;
+}
+
+.linkItem:hover span {
+  color: #d4af37;
+}
+
+/* ===== EDIT MODAL ===== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 200ms ease both;
+}
+
+.modal {
+  background: #0f0f18;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(212, 175, 55, 0.08);
+  animation: slideUp 250ms cubic-bezier(0.4, 0, 0.2, 1) both;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px 0;
+}
+
+.modalTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  font-family: 'Syne', sans-serif;
+}
+
+.modalClose {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms ease;
+}
+
+.modalClose:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.modalClose span {
+  font-size: 20px;
+}
+
+.modalBody {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fieldLabel {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+}
+
+.fieldInput,
+.fieldTextarea {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 14px;
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  outline: none;
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.fieldInput:focus,
+.fieldTextarea:focus {
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.1);
+}
+
+.fieldInput::placeholder,
+.fieldTextarea::placeholder {
+  color: #475569;
+}
+
+.fieldTextarea {
+  resize: vertical;
+  min-height: 72px;
+}
+
+.modalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 0 24px 20px;
+}
+
+.cancelBtn {
+  padding: 8px 20px;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  color: #94a3b8;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 200ms ease;
+}
+
+.cancelBtn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+
+.saveBtn {
+  padding: 8px 24px;
+  border-radius: 50px;
+  border: none;
+  background: linear-gradient(135deg, #d4af37, #aa7c11);
+  color: #000;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 200ms ease;
+}
+
+.saveBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.3);
+}
+
+.profileBio {
+  color: #94a3b8;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px) scale(0.97) }
+  to { opacity: 1; transform: translateY(0) scale(1) }
+}
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .profile {
+    padding: 24px 16px;
+  }
+
+  .headerTitle {
+    font-size: 24px;
+  }
+
+  .profileName {
+    font-size: 20px;
+  }
+
+  .avatar {
+    width: 64px;
+    height: 64px;
+    font-size: 22px;
+  }
+
+  .statValue {
+    font-size: 24px;
+  }
+
+  .statIcon {
+    font-size: 24px;
+  }
+
+  .editButton {
+    padding: 6px 16px;
+    font-size: 12px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .profile {
+    padding: 16px 12px;
+  }
+
+  .headerTitle {
+    font-size: 20px;
+  }
+
+  .headerLabel {
+    font-size: 9px;
+  }
+
+  .profileCard {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .avatar {
+    width: 56px;
+    height: 56px;
+    font-size: 18px;
+  }
+
+  .profileName {
+    font-size: 17px;
+  }
+
+  .profileEmail {
+    font-size: 13px;
+  }
+
+  .profileJoined {
+    font-size: 11px;
+  }
+
+  .statsGrid {
+    gap: 10px;
+  }
+
+  .statCard {
+    padding: 12px;
+  }
+
+  .statValue {
+    font-size: 20px;
+  }
+
+  .statIcon {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+
+  .statLabel {
+    font-size: 11px;
+  }
+
+  .quickLinks {
+    padding: 16px;
+  }
+
+  .quickLinksTitle {
+    font-size: 13px;
+  }
+
+  .linkItem {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .linkItem span {
+    font-size: 18px;
+  }
+
+  .editButton {
+    padding: 4px 12px;
+    font-size: 11px;
+  }
+
+  .editButton span {
+    font-size: 16px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+  .statsGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .statValue {
+    font-size: 18px;
+  }
+
+  .statIcon {
+    font-size: 18px;
+  }
+
+  .profileCard {
+    padding: 12px;
+  }
+
+  .avatar {
+    width: 48px;
+    height: 48px;
+    font-size: 16px;
+  }
+
+  .profileName {
+    font-size: 15px;
+  }
+
+  .headerTitle {
+    font-size: 18px;
+  }
+}
+
+/* Touch-friendly */
+@media (hover: none) and (pointer: coarse) {
+  .statCard:hover {
+    transform: none;
+  }
+
+  .linkItem:hover {
+    background: none;
+    transform: none;
+  }
+
+  .editButton:hover {
+    transform: none;
+  }
+
+  .profileCard:hover {
+    border-color: rgba(212, 175, 55, 0.15);
+  }
+
+  .statCard:active {
+    transform: scale(0.96);
+  }
+
+  .linkItem:active {
+    background: rgba(212, 175, 55, 0.08);
+    transform: translateX(4px);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .profileCard {
+    transition: none !important;
+  }
+
+  .statCard {
+    transition: none !important;
+  }
+
+  .linkItem {
+    transition: none !important;
+  }
+
+  .editButton {
+    transition: none !important;
+  }
+
+  .avatar {
+    transition: none !important;
+  }
+
+  .quickLinks {
+    transition: none !important;
+  }
+}
+
+/* Print styles */
+@media print {
+  .profile {
+    background: white;
+    padding: 40px;
+  }
+
+  .headerTitle {
+    color: #333;
+  }
+
+  .headerTitle span {
+    -webkit-text-fill-color: #333;
+    color: #333;
+    background: none;
+  }
+
+  .profileCard {
+    background: #f5f5f5;
+    border-color: #ddd;
+    box-shadow: none;
+  }
+
+  .avatar {
+    background: #ddd;
+    color: #333;
+    box-shadow: none;
+  }
+
+  .profileName {
+    color: #333;
+  }
+
+  .profileEmail {
+    color: #666;
+  }
+
+  .statCard {
+    background: #f5f5f5;
+    border-color: #ddd;
+  }
+
+  .statValue {
+    -webkit-text-fill-color: #333;
+    color: #333;
+    background: none;
+  }
+
+  .statLabel {
+    color: #666;
+  }
+
+  .quickLinks {
+    background: #f5f5f5;
+    border-color: #ddd;
+  }
+
+  .quickLinksTitle {
+    color: #333;
+  }
+
+  .linkItem {
+    color: #666;
+  }
+
+  .linkItem:hover {
+    background: none;
+  }
+
+  .editButton {
+    display: none;
+  }
+
+  .divider {
+    background: #ddd;
+  }
+}

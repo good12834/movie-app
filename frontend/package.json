@@ -1,27 +1,84 @@
 {
-  "name": "frontend",
+  "name": "cineverse",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "CineVerse - Premium Entertainment Platform",
+  "author": "Your Name",
+  "license": "MIT",
+
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint src --ext js,jsx --fix",
+    "format": "prettier --write src/**/*.{js,jsx,css,scss}",
+    "analyze": "vite build --mode analyze",
+    "clean": "rm -rf dist node_modules/.vite",
+    "prepare": "husky install"
   },
-  "devDependencies": {
-    "vite": "^8.0.12"
-  },
+
   "dependencies": {
-    "@mui/icons-material": "^9.0.1",
-    "@mui/material": "^9.0.1",
-    "@tailwindcss/vite": "^4.3.0",
-    "@vitejs/plugin-react": "^6.0.2",
-    "axios": "^1.16.1",
-    "bootstrap": "^5.3.8",
-    "react": "^19.2.6",
-    "react-bootstrap": "^2.10.10",
-    "react-dom": "^19.2.6",
-    "react-router-dom": "^7.15.1",
-    "tailwindcss": "^4.3.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0",
+    "axios": "^1.7.9",
+    
+    "bootstrap": "^5.3.2",
+    "react-bootstrap": "^2.10.2",
+    
+    "@mui/material": "^6.1.5",
+    "@mui/icons-material": "^6.1.5",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    
+    "tailwindcss": "^3.4.14",
+    "react-social-icons": "^6.16.0"
+  },
+
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.3",
+    "vite": "^5.4.10",
+    "@tailwindcss/vite": "^0.1.4",
+    
+    "eslint": "^8.57.1",
+    "eslint-plugin-react": "^7.37.2",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    
+    "prettier": "^3.3.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.10",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1"
+  },
+
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,scss}": [
+      "prettier --write"
+    ]
+  },
+
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
   }
 }
