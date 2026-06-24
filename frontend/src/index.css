@@ -592,14 +592,177 @@ code {
 }
 
 /* ============================================
-   8. RESPONSIVE UTILITIES
-   ============================================ */
+    8. RESPONSIVE UTILITIES
+    ============================================ */
+
+/* ── Scrollbar ── */
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* ── Touch Optimizations ── */
+@media (hover: none) and (pointer: coarse) {
+  /* Increase tap targets for touch devices */
+  button, a, input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent text selection on interactive elements */
+  button, .card, .navLink, .categoryPill {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Remove hover effects on touch devices */
+  .card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  
+  /* Add active states for touch feedback */
+  .card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  button:active {
+    transform: scale(0.96);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* ── Responsive Container System ── */
+.container-fluid {
+  width: 100%;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 640px) {
+  .container-fluid {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-fluid {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container-fluid {
+    max-width: 1280px;
+  }
+
+  .container-fluid.container-xl {
+    max-width: 1440px;
+  }
+}
+
+/* ── Safe Area Insets (for notched devices) ── */
+@supports (padding-top: env(safe-area-inset-top)) {
+  .navbar {
+    padding-top: env(safe-area-inset-top);
+    height: calc(var(--nav-height) + env(safe-area-inset-top));
+  }
+  
+  .mobileOverlay {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .trialToast {
+    bottom: calc(32px + env(safe-area-inset-bottom));
+    right: calc(16px + env(safe-area-inset-right));
+    left: calc(16px + env(safe-area-inset-left));
+  }
+}
+
+/* ── Responsive Text Sizing ── */
+.text-responsive-xs { font-size: clamp(0.75rem, 2vw, 0.875rem); }
+.text-responsive-sm { font-size: clamp(0.875rem, 2.5vw, 1rem); }
+.text-responsive-base { font-size: clamp(1rem, 3vw, 1.125rem); }
+.text-responsive-lg { font-size: clamp(1.125rem, 3.5vw, 1.25rem); }
+.text-responsive-xl { font-size: clamp(1.25rem, 4vw, 1.5rem); }
+
+/* ── Responsive Spacing ── */
+.p-responsive { padding: clamp(12px, 3vw, 24px); }
+.px-responsive { padding-left: clamp(12px, 3vw, 24px); padding-right: clamp(12px, 3vw, 24px); }
+.py-responsive { padding-top: clamp(12px, 3vw, 24px); padding-bottom: clamp(12px, 3vw, 24px); }
+.m-responsive { margin: clamp(12px, 3vw, 24px); }
+.mx-responsive { margin-left: clamp(12px, 3vw, 24px); margin-right: clamp(12px, 3vw, 24px); }
+.my-responsive { margin-top: clamp(12px, 3vw, 24px); margin-bottom: clamp(12px, 3vw, 24px); }
+
+/* ── Responsive Images ── */
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Visibility Utilities ── */
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+  .show-mobile { display: block !important; }
+}
+
+@media (min-width: 769px) {
+  .show-mobile { display: none !important; }
+  .hide-desktop { display: none !important; }
+}
+
+@media (max-width: 480px) {
+  .hide-small-mobile { display: none !important; }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .hide-tablet { display: none !important; }
+}
+
+/* ── Landscape Mode Optimizations ── */
+@media (max-height: 500px) and (orientation: landscape) {
+  .heroSection {
+    min-height: 100vh;
+    max-height: 100vh;
+  }
+  
+  .heroContent {
+    padding-bottom: 40px;
+  }
+  
+  .heroButtons {
+    margin-bottom: 16px;
+  }
+  
+  .heroIndicators {
+    display: none;
+  }
+  
+  .scrollDown {
+    display: none;
+  }
+}
+
+/* ── Foldable Device Support ── */
+@media (spanning: single-fold-horizontal) {
+  .heroSection {
+    height: 100vh;
+  }
+}
+
+@media (spanning: single-fold-vertical) {
+  .navbar {
+    height: calc(var(--nav-height) * 0.8);
+  }
 }
 
 .truncate-1 {

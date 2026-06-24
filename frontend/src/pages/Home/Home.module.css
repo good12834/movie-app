@@ -859,16 +859,18 @@
 /* ══════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════ */
+
+/* Tablets and below */
 @media (max-width: 1024px) {
   :root {
     --content-pad: 24px;
-    --section-gap: 52px;
+    --section-gap: 48px;
   }
 
   .premiumContainer {
     grid-template-columns: 1fr;
-    padding: 40px 32px;
-    gap: 40px;
+    padding: 36px 28px;
+    gap: 32px;
   }
 
   .premiumVisual {
@@ -878,20 +880,192 @@
   .statsContainer {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .carouselItemRank {
+    font-size: 56px;
+  }
 }
 
-@media (max-width: 640px) {
+/* Mobile landscape and small tablets */
+@media (max-width: 768px) {
   :root {
-    --content-pad: 16px;
+    --content-pad: 20px;
     --section-gap: 40px;
   }
 
+  .heroSection {
+    min-height: 500px;
+    max-height: 700px;
+  }
+
   .heroContent {
-    padding: 0 16px 60px;
+    padding: 0 20px 60px;
+  }
+
+  .heroOverlayBottom {
+    height: 180px;
   }
 
   .heroTitle {
-    font-size: clamp(26px, 8vw, 40px);
+    font-size: clamp(28px, 7vw, 44px);
+    margin-bottom: 12px;
+  }
+
+  .heroMeta {
+    font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .heroTagline {
+    font-size: 13px;
+    margin-bottom: 20px;
+    -webkit-line-clamp: 2;
+  }
+
+  .heroButtons {
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .btnWatch,
+  .btnMyList {
+    padding: 12px 20px;
+    font-size: 13px;
+    flex: 1;
+    min-width: 120px;
+    justify-content: center;
+  }
+
+  .btnInfo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .heroIndicators {
+    gap: 6px;
+  }
+
+  .heroIndicator {
+    width: 20px;
+    height: 2px;
+  }
+
+  .heroIndicator.heroIndicatorActive {
+    width: 32px;
+  }
+
+  .sectionHeader {
+    padding: 0 20px 16px;
+  }
+
+  .sectionTitle {
+    font-size: 20px;
+  }
+
+  .navArrow {
+    width: 32px;
+    height: 32px;
+  }
+
+  .navArrow .material-icons {
+    font-size: 18px !important;
+  }
+
+  .carouselContainer {
+    padding: 8px 20px 16px;
+  }
+
+  .carouselItemRank {
+    font-size: 48px;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  }
+
+  .categoryPill {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+
+  .premiumContainer {
+    padding: 28px 20px;
+  }
+
+  .premiumTitle {
+    font-size: clamp(24px, 5vw, 32px);
+  }
+
+  .premiumDesc {
+    font-size: 13px;
+  }
+
+  .statsContainer {
+    gap: 1px;
+  }
+
+  .statItem {
+    padding: 24px 16px;
+  }
+
+  .statNumber {
+    font-size: 24px;
+  }
+
+  .statLabel {
+    font-size: 11px;
+  }
+
+  .plansGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .trialToast {
+    right: 16px;
+    bottom: 16px;
+    left: 16px;
+    font-size: 13px;
+  }
+}
+
+/* Mobile portrait */
+@media (max-width: 480px) {
+  :root {
+    --content-pad: 16px;
+    --section-gap: 32px;
+  }
+
+  .heroSection {
+    min-height: 450px;
+    max-height: 600px;
+  }
+
+  .heroContent {
+    padding: 0 16px 50px;
+  }
+
+  .heroBackgroundOverlay {
+    background: linear-gradient(
+      to right,
+      rgba(8, 8, 14, 0.95) 0%,
+      rgba(8, 8, 14, 0.7) 60%,
+      rgba(8, 8, 14, 0.25) 100%
+    );
+  }
+
+  .heroBadge {
+    font-size: 11px;
+    padding: 5px 10px;
+    margin-bottom: 14px;
+  }
+
+  .heroTitle {
+    font-size: clamp(24px, 8vw, 36px);
+    margin-bottom: 10px;
+  }
+
+  .heroMeta {
+    font-size: 11px;
+    gap: 6px;
+    margin-bottom: 10px;
   }
 
   .heroTagline {
@@ -899,40 +1073,183 @@
   }
 
   .heroButtons {
+    flex-direction: column;
     gap: 8px;
+    margin-bottom: 20px;
   }
 
   .btnWatch,
   .btnMyList {
-    padding: 11px 18px;
+    width: 100%;
+    padding: 12px 16px;
     font-size: 13px;
   }
 
-  .categoryContainer {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-    padding-bottom: 4px;
+  .btnInfo {
+    position: absolute;
+    top: auto;
+    bottom: 80px;
+    right: 16px;
   }
 
-  .categoryContainer::-webkit-scrollbar {
-    display: none;
+  .scrollDown {
+    bottom: 16px;
+  }
+
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 0 16px 16px;
+  }
+
+  .sectionNav {
+    align-self: flex-end;
+  }
+
+  .categoryContainer {
+    padding: 0 16px;
+  }
+
+  .categoryPill {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+
+  .carouselContainer {
+    padding: 8px 16px 16px;
+  }
+
+  .carouselItem {
+    width: 140px;
+  }
+
+  .carouselItemRank {
+    font-size: 40px;
+    bottom: -4px;
+    left: -2px;
+  }
+
+  .premiumSection {
+    padding: var(--section-gap) 16px;
   }
 
   .premiumContainer {
-    padding: 28px 20px;
+    padding: 24px 16px;
   }
 
-  .sectionTitle {
-    font-size: 18px;
+  .premiumBadge {
+    font-size: 11px;
+    padding: 5px 12px;
+  }
+
+  .premiumTitle {
+    font-size: 22px;
+  }
+
+  .premiumDesc {
+    font-size: 12px;
+  }
+
+  .premiumFeature {
+    font-size: 12px;
+  }
+
+  .btnPremium,
+  .btnViewPlans {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 16px;
+    font-size: 13px;
   }
 
   .statsContainer {
     grid-template-columns: repeat(2, 1fr);
+    border-radius: var(--radius-md);
+  }
+
+  .statItem {
+    padding: 20px 12px;
+    gap: 4px;
   }
 
   .statNumber {
-    font-size: 28px;
+    font-size: 22px;
+  }
+
+  .statLabel {
+    font-size: 10px;
+    letter-spacing: 0.01em;
+  }
+
+  .plansModal {
+    padding: 20px 16px;
+    margin: 16px;
+    max-height: 85vh;
+  }
+
+  .plansTitle {
+    font-size: 18px;
+  }
+
+  .planCard {
+    padding: 20px 16px;
+  }
+
+  .planPriceValue {
+    font-size: 24px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 380px) {
+  :root {
+    --content-pad: 12px;
+    --section-gap: 28px;
+  }
+
+  .heroBadge {
+    font-size: 10px;
+    padding: 4px 8px;
+  }
+
+  .heroTitle {
+    font-size: 22px;
+  }
+
+  .heroButtons {
+    gap: 6px;
+  }
+
+  .btnWatch,
+  .btnMyList {
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .sectionTitle {
+    font-size: 17px;
+  }
+
+  .categoryPill {
+    padding: 5px 10px;
+    font-size: 10px;
+  }
+
+  .carouselItem {
+    width: 120px;
+  }
+
+  .carouselItemRank {
+    font-size: 36px;
+  }
+
+  .statNumber {
+    font-size: 20px;
+  }
+
+  .statLabel {
+    font-size: 9px;
   }
 }
 

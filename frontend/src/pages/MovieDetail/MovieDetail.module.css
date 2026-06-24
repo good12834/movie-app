@@ -547,6 +547,43 @@
   }
 }
 
+/* 768px */
+@media (max-width: 768px) {
+  .backdropWrapper {
+    height: 280px;
+  }
+
+  .contentContainer {
+    padding: 0 16px 48px;
+    margin-top: -120px;
+  }
+
+  .movieTitle {
+    font-size: 26px;
+  }
+
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .similarGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .castGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .posterWrapper {
+    max-width: 200px;
+  }
+
+  .overviewText {
+    font-size: 14px;
+  }
+}
+
 /* 480px */
 @media (max-width: 480px) {
   .backdropWrapper {
@@ -650,6 +687,109 @@
 
   .trailerWrapper {
     aspect-ratio: 16/9;
+  }
+}
+
+/* 380px */
+@media (max-width: 380px) {
+  .backdropWrapper {
+    height: 180px;
+  }
+
+  .contentContainer {
+    padding: 0 10px 24px;
+    margin-top: -60px;
+  }
+
+  .movieTitle {
+    font-size: 20px;
+  }
+
+  .movieTagline {
+    font-size: 12px;
+  }
+
+  .metaPills {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .ratingPill {
+    font-size: 11px;
+    padding: 2px 6px;
+  }
+
+  .metaPill {
+    font-size: 11px;
+  }
+
+  .genrePill {
+    font-size: 8px;
+    padding: 1px 6px;
+  }
+
+  .overviewBox {
+    padding: 12px;
+  }
+
+  .overviewText {
+    font-size: 12px;
+  }
+
+  .statCard {
+    padding: 6px 10px;
+  }
+
+  .statValue {
+    font-size: 12px;
+  }
+
+  .similarGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .castGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .castCard {
+    padding: 6px;
+  }
+
+  .castAvatar,
+  .castAvatarPlaceholder {
+    width: 36px;
+    height: 36px;
+  }
+
+  .castName {
+    font-size: 11px;
+  }
+
+  .castCharacter {
+    font-size: 9px;
+  }
+
+  .similarTitle {
+    font-size: 15px;
+  }
+
+  .posterWrapper {
+    max-width: 140px;
+  }
+
+  .backButton {
+    font-size: 11px;
+  }
+
+  .backButton span {
+    font-size: 14px;
+  }
+
+  .sectionLabel {
+    font-size: 9px;
   }
 }
 
